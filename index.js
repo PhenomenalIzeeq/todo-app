@@ -1,12 +1,15 @@
+const dns = require('dns');
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose'); 
 const todoRoutes = require('./Routes/todoRoutes'); 
 
-const live_url = "mongodb+srv:izeeq:passworld@cluster0.shw6krr.mongodb.net/userDB?appName=Cluster0"
+const live_url = "mongodb+srv://isaacemeka2001_db_user:passworld@cluster0.nqjif6c.mongodb.net/?appName=Cluster0"
 const local_url = "mongodb://localhost:27017/userDB";
 
-mongoose.connect(local_url)
+mongoose.connect(live_url)
   .then(() => console.log("Mongodb is connected"))
   .catch((err) => console.log("Connection error: ", err));
 
