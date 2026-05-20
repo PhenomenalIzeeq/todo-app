@@ -8,7 +8,7 @@ const getAllTodos = async (req, res) => {
             message: "All Todos",
             data: todo
         });
-    } catch (error) {
+    } catch (err) {
         return res.status(500).json({ message: err.message });
     }
 };
@@ -21,7 +21,7 @@ const getOneTodo = async (req, res) => {
             message: "Todo found",
             data: todo
         });
-    } catch (error) {
+    } catch (err) {
         return res.status(500).json({ message: err.message });
     }
 };
@@ -42,10 +42,10 @@ const createTodo = async (req, res) => {
 const updateTodo = async (req, res) => {
     try {
         const { id } = req.params;
-        const { completed } = req.body;
+        
         const todo = await todoModel.findByIdAndUpdate(
             id, 
-            { completed },
+            { completed: true },
              { new: true });
         return res.status(200).json({
             message: "Todo updated",
@@ -59,7 +59,7 @@ const updateTodo = async (req, res) => {
 const deleteTodo = async (req, res) => {
     try {
         const { id } = req.params;
-        const todo = await todoModel.findByIdAndDelete(id);
+   const todo= await todoModel.findByIdAndDelete(id);
         return res.status(200).json({
             message: "Todo deleted",
             data: todo
